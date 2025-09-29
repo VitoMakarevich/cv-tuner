@@ -1,0 +1,14 @@
+target-version = "py312"
+line-length = 120
+exclude = [".git", "__pycache__", "build", "dist", ".venv", ".mypy_cache", "*.pyc", "*.pyo"]
+[lint]
+select = ["E", "F", "B", "C", "I", "S", "TCH", "ANN", "D", "Q000"]
+per-file-ignores = { "tests/*" = ["D", "S101"], "__init__.py" = ["F401"] }
+extend-select = ["N", "UP", "COM"]
+ignore = ["D100", "S607", "S603"]
+
+[lint.isort]
+combine-as-imports = true
+
+[lint.pydocstyle]
+convention = "google"

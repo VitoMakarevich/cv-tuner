@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+
+# Virtual environments
+.venv
+.env
+
+
+.ruff_cache
+
+# Random stuff - better to put to local gitignore inside .git, but I'm lazy
+.DS_Store
+
+# Output
+output/
+streamlit_output/
+test_output/

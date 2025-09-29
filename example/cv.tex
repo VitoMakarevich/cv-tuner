@@ -1,0 +1,172 @@
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Alex Johnson} \\ \vspace{1pt}
+    \small  $|$ \href{mailto:alex.johnson.dev@example.com}{\underline{alex.johnson.dev@example.com}} $|$
+    \href{https://www.linkedin.com/in/alex-johnson}{\underline{alex-johnson}} $|$
+    \href{https://github.com/alexjohnson}{\underline{alexjohnson}}
+\end{center}
+%-----------DESCRIPTION----------
+\section{Summary}
+  \small{I build frontend platforms and tools that make complex information simple and help engineers move faster. Over 8 years, I have focused on React and TypeScript, designing component libraries, robust state management, and performant data visualizations that surface real-time insights. I am comfortable designing and consuming GraphQL APIs to enable predictable, type-safe data flows, and I care deeply about usability, accessibility, and clear interfaces that accelerate decision-making. My work spans developer productivity dashboards, internal tooling, and user-facing features where reliable testing, observability, and performance are first-class concerns. I enjoy turning loosely defined problems into well-scoped solutions, collaborating closely with product, design, and backend teams to iterate quickly and ship impactful improvements. I value documentation, automated quality gates, and CI/CD practices that keep teams confident and fast.\\[0.5em]I operate well in cross-functional environments: I facilitate scope, estimation, and prioritization, aligning technical choices with product goals and timelines. I lead design and code reviews that focus on clarity, maintainability, and correctness, and I maintain documentation that makes platforms easy to adopt. I mentor earlier-career engineers by pairing, giving structured feedback, and sharing context so they can deliver independently. I’m comfortable with ambiguity and can explore options, propose trade-offs, and drive a path forward when requirements evolve. I maintain a product mindset—measuring outcomes, instrumenting features to learn from real usage, and using metrics to guide iteration. I champion testing strategies with unit and integration coverage (Jest, Cypress) and stay current with modern tools such as Playwright, adopting them where they reduce flakiness or improve speed. I care about accessibility (WCAG) and performance budgets, using profiling and monitoring to catch regressions early. When needed, I can flex into BFF/GraphQL schema work alongside backend partners to keep the frontend unblocked. Above all, I communicate clearly, document decisions, and seek feedback early so the team can deliver reliable, intuitive experiences that make engineers more effective every day.}
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Senior Frontend Engineer}{08.2025 - Present}
+      {NovaWeb Solutions (Internal Platform)}{Remote, Warsaw, Poland}
+      \resumeItemListStart
+        \resumeItem{Delivered engineering-productivity dashboards and tooling in React + TypeScript, turning telemetry and workflow data into actionable visualizations.}
+        \resumeItem{Co-designed GraphQL query patterns and types with backend partners to provide stable, well-typed API contracts for frontend features.}
+        \resumeItem{Built reusable component libraries and charts, standardizing UX and improving delivery speed across internal apps.}
+        \resumeItem{Reduced critical-path render and network overhead via memoization, code-splitting, and caching strategies, cutting key page loads by \textasciitilde{}30\%.}
+        \resumeItem{Established quality gates with unit/integration tests (Jest, Cypress) and CI checks; maintained clear README and usage docs for internal adopters.}
+        \resumeItem{Partnered with PM/Design to scope releases, define acceptance criteria, and align priorities across conflicting requests.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Senior Frontend Engineer}{12.2020 - 06.2025}
+      {BrightLearn (Learning Platform)}{Remote, Warsaw, Poland}
+      \resumeItemListStart
+        \resumeItem{Led migration from legacy JS to TypeScript and modern React patterns, improving reliability and dev velocity.}
+        \resumeItem{Integrated GraphQL APIs and optimized state management with Redux/RTK to streamline data flows and reduce over-fetching.}
+        \resumeItem{Designed analytics views and data visualizations to expose learning outcomes and system health to stakeholders.}
+        \resumeItem{Hardened quality with Jest unit tests and Cypress E2E coverage; added performance profiling and accessibility checks (WCAG).}
+        \resumeItem{Introduced CI/CD for frontend builds and automated test gates; wrote component and platform documentation to improve onboarding.}
+        \resumeItem{Collaborated in product/design reviews, providing technical input, estimates, and trade-off recommendations.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Frontend Engineer}{02.2020 - 11.2020}
+      {EduTech Labs (Education Platform)}{Remote, Minsk, Belarus}
+      \resumeItemListStart
+        \resumeItem{Developed modular React components with Styled Components, improving consistency and reusability across the application.}
+        \resumeItem{Integrated third-party services (payments, analytics) and instrumented usage metrics for data-informed iteration.}
+        \resumeItem{Implemented error tracking and performance monitoring to detect regressions early and improve stability.}
+        \resumeItem{Contributed to testing strategy with Jest and Cypress to maintain confidence during rapid releases.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Frontend Software Engineer}{06.2018 - 02.2020}
+      {FitLife App}{Minsk, Belarus}
+      \resumeItemListStart
+        \resumeItem{Built frontend and a lightweight BFF layer, enabling type-safe data access and simplified client logic.}
+        \resumeItem{Led migration from REST to GraphQL for key features, collaborating on schema design and reducing client complexity and payload size.}
+        \resumeItem{Adopted micro-frontend patterns for independent module delivery and safer, incremental deployments.}
+        \resumeItem{Created performance and UX metrics dashboards to monitor release impact and guide optimization efforts.}
+        \resumeItem{Maintained automated tests (Jest) and introduced E2E coverage (Cypress) for critical user journeys.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Junior Frontend Engineer}{08.2016 - 06.2018}
+      {IoTWeb Solutions}{Minsk, Belarus}
+      \resumeItemListStart
+        \resumeItem{Shipped lightweight web apps in vanilla JS and Node.js, focusing on clear UI and responsive layouts.}
+        \resumeItem{Built dashboards that visualize device and event data, improving operator awareness and response times.}
+        \resumeItem{Adopted modern tooling and code hygiene practices (linting, formatting, Git workflows).}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item \textbf{Languages}: JavaScript, TypeScript, HTML5, CSS3}
+    \small{\item \textbf{Frameworks}: React, Redux, Next.js, Node.js, GraphQL, Apollo Client, Styled Components}
+    \small{\item \textbf{Databases}: PostgreSQL, MongoDB, Redis}
+    \small{\item \textbf{Cloud \& DevOps}: CI/CD, GitHub Actions, Docker}
+    \small{\item \textbf{Data Engineering}: }
+    \small{\item \textbf{Tools \& Technologies}: Git, Jest, Cypress, Playwright (familiar), Webpack, Babel, ESLint, Prettier, GraphQL tooling, Performance profiling, Accessibility (WCAG)}
+ \end{itemize}
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Tech University}{Minsk, Belarus}
+      {Bachelor in Computer Science}{2014 - 2018}
+    \resumeSubheading
+      {Tech University}{Minsk, Belarus}
+      {Master in Computer Science}{2018 - 2020}
+  \resumeSubHeadingListEnd
+%-----------LANGUAGES-----------
+\section{Languages}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{English}: {Fluent (C1)} \\
+     \textbf{Polish}: {Beginner (A2)} \\
+    }}
+ \end{itemize}
+%-------------------------------------------
+\end{document}
