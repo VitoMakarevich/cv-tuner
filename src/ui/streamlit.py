@@ -1,5 +1,5 @@
+import datetime
 import os
-import uuid
 from pathlib import Path
 
 import streamlit as st
@@ -14,8 +14,6 @@ from tests.fake_executor import FakeExecutor
 if "OPENAI_API_KEY" in os.environ:
     del os.environ["OPENAI_API_KEY"]
 
-if "session_id" not in st.session_state:
-    st.session_state.session_id = str(uuid.uuid4())
 if "processing" not in st.session_state:
     st.session_state.processing = False
 if "last_output" not in st.session_state:
@@ -26,7 +24,7 @@ default_prompts = load_prompts()
 
 def flow() -> None:
     """Main CV generation flow."""
-    output_path = root_dir_path / "streamlit_output" / str(uuid.uuid4())
+    output_path = root_dir_path / "streamlit_output" / datetime.datetime.now().isoformat()
     renderer = JinjaRenderer(prompt_template_path)
     cv_renderer = HTMLCVRenderer(html_template_path)
     if preview:
@@ -135,4 +133,5 @@ elif st.session_state.last_output is not None and not st.session_state.processin
     )
 else:
     st.error("Unknown state")
+    st.error(st.session_state)
     st.error(st.session_state)
