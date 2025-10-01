@@ -1,5 +1,6 @@
 FROM python:3.12
 
+LABEL org.opencontainers.image.source=https://github.com/vitomakarevich/cv-tuner
 RUN apt-get update && apt-get install -y wget fonts-dejavu ghostscript && rm -rf /var/lib/apt/lists/*
 
 RUN wget -O - https://astral.sh/uv/install.sh | sh
