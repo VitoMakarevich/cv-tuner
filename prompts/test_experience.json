@@ -1,6 +1,6 @@
 {
   "name": "Alex Johnson",
-  "title": "Senior Frontend Engineer | React + TypeScript | GraphQL & Data Visualization",
+  "title": "Senior Frontend Engineer",
   "phone": "+1234567890",
   "description": "I am passionate about building frontend platforms that unlock productivity and deliver delightful, data-driven experiences. Over eight years I have designed and shipped scalable web applications with React and TypeScript, combining robust UI systems with thoughtful data visualization. I focus on building reusable component libraries, clean architecture, and reliable front-end foundations that scale with growing teams. I have delivered dashboards and analytics tools that present complex data clearly, enabling engineers and product stakeholders to measure impact and make informed decisions. My work often centers on integrating frontend experiences with GraphQL backends, shaping data models, and crafting responsive, accessible interfaces that meet WCAG standards. I strive to reduce latency, improve reliability, and shorten feedback loops through automated testing, instrumentation, and CI/CD. I have architected front-end solutions that expose clear, real-time insights into system performance and developer productivity, aligning with strategic goals and measurable outcomes.\n\nBeyond hands-on development, I contribute to cross-functional product and design reviews, helping to scope, estimate, and prioritize features amid competing demands. I mentor junior engineers, advocate for best practices, and support the growth of early-career talent. I communicate clearly with stakeholders, translate user needs into actionable tasks, and drive initiatives with a product-minded, metrics-driven approach. I am comfortable operating in ambiguity, balancing quality, speed, and scope, and I frequently draft documentation for teams to onboard quickly to platforms and tools. My experience with GraphQL API layers and data models supports diverse front-end experiences, and I enjoy collaborating with frontend/UI engineers, designers, product managers, and users to understand needs and deliver high-impact solutions. I also take pride in building internal UI libraries and design systems to ensure consistency and accelerate delivery across projects, while maintaining a strong focus on accessibility, internationalization, and maintainability.",
   "email": "alex.johnson.dev@example.com",
@@ -26,7 +26,7 @@
     {
       "title": "Senior Frontend Engineer",
       "duration": "08.2025 - Present",
-      "company": "NovaWeb Solutions (Internal Project)",
+      "company": "NovaWeb Solutions",
       "location": "Remote, Warsaw, Poland",
       "descriptions": [
         "Built reusable React components and UI libraries for internal applications; designed dashboards for internal analytics and real-time insights.",
@@ -40,7 +40,7 @@
     {
       "title": "Senior Frontend Engineer",
       "duration": "12.2020 - 06.2025",
-      "company": "BrightLearn (Learning Platform Project)",
+      "company": "BrightLearn",
       "location": "Remote, Warsaw, Poland",
       "descriptions": [
         "Led migration from legacy JavaScript to TypeScript and modern React architecture.",
@@ -54,7 +54,7 @@
     {
       "title": "Frontend Engineer",
       "duration": "02.2020 - 11.2020",
-      "company": "EduTech Labs (Education Platform Project)",
+      "company": "EduTech Labs",
       "location": "Remote, Minsk, Belarus",
       "descriptions": [
         "Developed modular UI components with React, Styled Components, and Tailwind CSS.",
@@ -78,7 +78,7 @@
     {
       "title": "Junior Frontend Engineer",
       "duration": "08.2016 - 06.2018",
-      "company": "IoTWeb Solutions (Former Hackspace)",
+      "company": "IoTWeb Solutions",
       "location": "Minsk, Belarus",
       "descriptions": [
         "Developed lightweight web applications in Node.js and vanilla JavaScript.",
