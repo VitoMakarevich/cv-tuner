@@ -60,7 +60,21 @@
         </div>
         <p>{{ description | replace('\n', '<br>') | safe }}</p>
     </section>
-
+     <section class="mb-2">
+        <div class="d-flex align-items-center gap-1 mb-2">
+            <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
+                Skills
+            </h5>
+            <hr class="flex-grow-1 border-2">
+        </div>
+        <div class="row">
+            {% for category, items in skills.items() %}
+            <div class="col-6 mb-1 gap-3">
+                <strong>{{ category.replace('_', ' ').title() }}:</strong> {{ items | join(', ') }}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
     <section class="mb-2">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
@@ -86,22 +100,6 @@
             </ul>
         </article>
         {% endfor %}
-    </section>
-
-    <section class="mb-2">
-        <div class="d-flex align-items-center gap-1 mb-2">
-            <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
-                Skills
-            </h5>
-            <hr class="flex-grow-1 border-2">
-        </div>
-        <div class="row">
-            {% for category, items in skills.items() %}
-            <div class="col-md-6 mb-2">
-                <strong>{{ category.replace('_', ' ').title() }}:</strong> {{ items | join(', ') }}
-            </div>
-            {% endfor %}
-        </div>
     </section>
 
     <section class="mb-2">
