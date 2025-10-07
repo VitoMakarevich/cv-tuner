@@ -1,3 +1,4 @@
+from git import Optional
 from pydantic import BaseModel
 
 
@@ -38,11 +39,17 @@ class Language(BaseModel):
     proficiency: str
 
 
-class CVData(BaseModel):
-    """Root class holding all parameters."""
+class PersonalData(BaseModel):
+    """Personal data."""
 
     name: str
     title: str
+
+
+class CVData(BaseModel):
+    """Root class holding all parameters."""
+
+    personal_data: PersonalData
     phone: str
     description: str
     email: str
@@ -54,3 +61,11 @@ class CVData(BaseModel):
     experiences: list[Experience]
     skills: Skills
     languages: list[Language]
+
+
+class CoverLetterData(BaseModel):
+    """Root class for representing cover letter text."""
+
+    personal_data: PersonalData
+    company_name: Optional[str] = None
+    text: str

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">    <style>
         @page {
             size: A4;
-            margin: 10mm;
+            margin: 20mm;
         }
 
         body {
@@ -38,9 +38,9 @@
 
 </head>
 <body class="container p-0">
-    <header class="mb-4 text-center">
-        <h1 class="text-uppercase">{{ name }}</h1>
-        <h4 class="normal-font">{{ title }}</h4>
+    <header class="mb-1 text-center">
+        <h1 class="text-uppercase">{{ personal_data.name }}</h1>
+        <h4 class="normal-font">{{ personal_data.title }}</h4>
         <address class="d-flex flex-wrap gap-3 justify-content-center fs-8">
             <span>Phone: {{ phone }}</span>
             <div class="vr"></div>
@@ -51,7 +51,7 @@
             <span><a class="text-body text-decoration-underline" href="{{ github_url }}">{{ github }}</a></span>
         </address>
     </header>
-    <section class="mb-2">
+    <section class="mb-1">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
                 Professional summary
@@ -60,7 +60,7 @@
         </div>
         <p>{{ description | replace('\n', '<br>') | safe }}</p>
     </section>
-     <section class="mb-2">
+     <section class="mb-1">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
                 Skills
@@ -75,7 +75,7 @@
             {% endfor %}
         </div>
     </section>
-    <section class="mb-2">
+    <section class="mb-1">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
                 Experience
@@ -85,11 +85,8 @@
         {% for exp in experiences %}
         <article class="row gx-3 gy-0">
             <div class="col-5 text-break">
-                <div>
-                    <span>{{ exp.company }}</span>
-                    <div class="vr"></div>
-                    <span>{{ exp.location }}</span>
-                </div>
+                <div>{{ exp.company }}</div>
+                <div>{{ exp.location }}</div>
                 <div class="fw-bold">{{ exp.title }}</div>
                 <div class="fst-italic">{{ exp.duration }}</div>
                 </div>
@@ -102,7 +99,7 @@
         {% endfor %}
     </section>
 
-    <section class="mb-2">
+    <section class="mb-1">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
                 Education
@@ -120,7 +117,7 @@
         {% endfor %}
     </section>
 
-    <section class="mb-2">
+    <section class="mb-1">
         <div class="d-flex align-items-center gap-1 mb-2">
             <h5 class="text-uppercase fw-semibold fs-5 mb-0 me-2">
                 Languages

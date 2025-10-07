@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import streamlit as st
+from attr import dataclass
 
 from src.ai.executor import AgenticExecutor
 from src.context import Context
@@ -10,6 +11,15 @@ from src.html_cv_renderer import HTMLCVRenderer
 from src.jinja_renderer import JinjaRenderer
 from src.local_file_loader import html_template_path, load_prompts, prompt_template_path, root_dir_path
 from tests.fake_executor import FakeExecutor
+
+
+@dataclass
+class Output:
+    """Output."""
+
+    cover_letter: Path
+    cv: Path
+
 
 if "OPENAI_API_KEY" in os.environ:
     del os.environ["OPENAI_API_KEY"]
@@ -33,6 +43,8 @@ def flow() -> None:
             renderer=renderer,
             output_path=output_path,
             job_description=structured_defaults.job_description,
+            task=structured_defaults.task,
+            system_prompt_cover_letter=structured_defaults.system_prompt_cover_letter,
             experience=structured_defaults.experience,
             system_prompt=structured_defaults.system_prompt,
         )
@@ -44,13 +56,15 @@ def flow() -> None:
             renderer=renderer,
             output_path=output_path,
             job_description=job_description,
+            system_prompt_cover_letter=system_prompt_cover_letter,
+            task=default_prompts.task,
             experience=experience,
             system_prompt=system_prompt,
         )
 
         real_executor = AgenticExecutor(cv_renderer)
         real_executor.execute(api_key, model, context)
-    st.session_state.last_output = output_path / "cv.pdf"
+    st.session_state.last_output = Output(cv=output_path / "cv.pdf", cover_letter=output_path / "cover_letter.pdf")
     st.session_state.processing = False
     st.rerun()
 
@@ -76,11 +90,15 @@ with st.expander("📄 How to use AI CV Tuner", expanded=False):
 st.sidebar.header("📄 CV Inputs")
 
 preview = st.sidebar.checkbox("👀 Preview", False, help="Do not use GPT - just render PDF with default values.")
+submit = st.sidebar.button(
+    "🚀 Make my resume",
+    disabled=st.session_state.processing,
+)
 if not preview:
     model = st.sidebar.selectbox(
         "🤖 Model",
-        ["gpt-5-nano", "gpt-5-mini", "gpt-5", "gpt-4-o"],
-        index=1,
+        ["gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o"],
+        index=0,
         help="Select a model or type a custom one.",
         accept_new_options=True,
     )
@@ -92,6 +110,12 @@ if not preview:
         default_prompts.system_prompt,
         height=TEXTAREA_HEIGHT,
         help="All instructions on how to merge your experience with desired job.",
+    )
+    system_prompt_cover_letter = st.sidebar.text_area(
+        "🛠️ System Prompt for cover letter",
+        default_prompts.system_prompt_cover_letter,
+        height=TEXTAREA_HEIGHT,
+        help="All instructions on how to create cover letter.",
     )
     job_description = st.sidebar.text_area(
         "💼 Job Description",
@@ -107,11 +131,6 @@ if not preview:
         "including simple ones like Git, Linux, etc.",
     )
 
-submit = st.sidebar.button(
-    "🚀 Make my resume",
-    disabled=st.session_state.processing,
-)
-
 if submit:
     st.session_state.last_output = None
     st.session_state.processing = True
@@ -121,16 +140,31 @@ if st.session_state.last_output is None and st.session_state.processing:
 elif st.session_state.last_output is None and not st.session_state.processing:
     st.warning("✏️ Fill in your details and press 'Make my resume' to generate your CV.")
 elif st.session_state.last_output is not None and not st.session_state.processing:
-    st.pdf(st.session_state.last_output)
-    with open(st.session_state.last_output, "rb") as f:
-        pdf_bytes = f.read()
-    st.download_button(
-        "💾 Download",
-        pdf_bytes,
-        file_name="cv.pdf",
-        mime="application/pdf",
-        use_container_width=False,
-    )
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.pdf(st.session_state.last_output.cv)
+        with open(st.session_state.last_output.cv, "rb") as f:
+            cv_bytes = f.read()
+        st.download_button(
+            "💾 Download CV",
+            cv_bytes,
+            file_name="cv.pdf",
+            mime="application/pdf",
+            use_container_width=False,
+        )
+
+    with col2:
+        st.pdf(st.session_state.last_output.cover_letter)
+        with open(st.session_state.last_output.cover_letter, "rb") as f:
+            cl_bytes = f.read()
+        st.download_button(
+            "💌 Download Cover Letter",
+            cl_bytes,
+            file_name="cover_letter.pdf",
+            mime="application/pdf",
+            use_container_width=False,
+        )
 else:
     st.error("Unknown state")
     st.error(st.session_state)

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from src.ai.agent import cv_tuner_agent
 from src.ai.tools import ToolProvider
 from src.context import Context
-from src.cv_renderer import CVRenderer
+from src.renderer import Renderer
 
 
 class Executor(ABC):
@@ -17,7 +17,7 @@ class Executor(ABC):
 class AgenticExecutor(Executor):
     """Controls steps before and after agent execution."""
 
-    def __init__(self, renderer: CVRenderer) -> None:
+    def __init__(self, renderer: Renderer) -> None:
         """Set underlying implementation."""
         self._renderer = renderer
 

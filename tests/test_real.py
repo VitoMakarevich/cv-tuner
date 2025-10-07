@@ -11,11 +11,16 @@ from src.local_file_loader import html_template_path, load_prompts, prompt_templ
 
 expected_files = [
     "cv.pdf",
+    "cv.html",
+    "cover_letter.pdf",
+    "cover_letter.html",
     "llm_experience.md",
     "llm_job_description.md",
     "raw_experience.md",
     "raw_job_description.md",
     "system_prompt.md",
+    "cover_letter.pdf",
+    "system_prompt_cover_letter.md",
 ]
 
 jinja_renderer = JinjaRenderer(prompt_template_path)
@@ -32,11 +37,12 @@ def test_real() -> None:
         job_description=prompts.job_description,
         experience=prompts.experience,
         system_prompt=prompts.system_prompt,
+        system_prompt_cover_letter=prompts.system_prompt_cover_letter,
+        task=prompts.task,
         output_path=output_path,
         renderer=jinja_renderer,
     )
     executor = AgenticExecutor(html_renderer)
     executor.execute(api_key, "gpt-5-nano", context)
     output_files = os.listdir(output_path)
-    assert set(expected_files + ["tool_call.json"]).issuperset(set(output_files))
     assert set(expected_files + ["tool_call.json"]).issuperset(set(output_files))

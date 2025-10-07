@@ -14,6 +14,7 @@ Given `<actual experience>` and `<job description>`, generate a CV section or su
 1. **Analyze the job description**  
    - Identify the main focus (e.g., Data Engineering, Backend, Frontend).  
    - Remove irrelevant aspects from `<actual experience>`.
+   - Keep the job title high level - e.g. Software Engineer/Data Engineer, do not make it very narrow.
 
 2. **Fill in missing basic skills**  
    - Add basic skills (e.g., Git, TDD) mentioned in `<job description>` but missing in `<actual experience>`.  
