@@ -5,11 +5,11 @@ from pydantic import SecretStr
 
 if TYPE_CHECKING:
     from langchain_core.messages import AIMessage
+
 from langchain_openai import ChatOpenAI
 
 from src.ai.tools import ToolProvider
 from src.context import Context
-from src.models import CVData
 
 
 def cv_tuner_agent(context: Context, tool_provider: ToolProvider, openai_api_key: str, open_api_model: str) -> None:
@@ -28,18 +28,27 @@ def cv_tuner_agent(context: Context, tool_provider: ToolProvider, openai_api_key
 
     llm_with_tools = llm.bind_tools(list(tools.values()))  # pyright: ignore[reportUnknownMemberType]
     llm_input = context.agent_input
-    system_message = SystemMessage(content=llm_input.system_prompt)
+    system_prompt_cv = SystemMessage(content=llm_input.system_prompt)
+    system_prompt_cover_letter = SystemMessage(content=llm_input.system_prompt_cover_letter)
     experience_message = HumanMessage(content=llm_input.experience)
     job_description_message = HumanMessage(content=llm_input.job_description)
+    task = HumanMessage(llm_input.task)
     response = llm_with_tools.invoke(
-        [system_message, experience_message, job_description_message],
+        [
+            system_prompt_cv,
+            system_prompt_cover_letter,
+            experience_message,
+            job_description_message,
+            task,
+        ],
     )
     response = cast("AIMessage", response)
 
     if len(response.tool_calls) == 0:
         raise ValueError("Tool call number is 0, a tool must be called.")
     for tool_call in response.tool_calls:
-        tool_call_args = CVData(**tool_call["args"])
-        context.add_tool_call(tool_call_args.model_dump_json())
+        tools[tool_call["name"]].invoke(tool_call["args"])  # pyright: ignore[reportUnknownMemberType]
+    import json
 
-        tools[tool_call["name"]].invoke(tool_call_args.model_dump())  # pyright: ignore[reportUnknownMemberType]
+    context.add_tool_call(json.dumps(response.tool_calls))
+    context.add_tool_call(json.dumps(response.tool_calls))

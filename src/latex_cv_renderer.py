@@ -2,37 +2,25 @@ import re
 import subprocess
 from pathlib import Path
 
-from jinja2 import Environment
-
-from src.cv_renderer import CVRenderer
-from src.models import CVData
+from src.renderer import Renderable, Renderer
 
 
-class LatexCVRenderer(CVRenderer):
+class LatexCVRenderer(Renderer):
     """Produces a human readable output from structured input."""
-
-    _template: str
 
     def __init__(self, template_path: Path) -> None:
         """Init."""
-        with open(template_path) as f:
-            self._template = f.read()
+        super().__init__(template_path, False)
+        self._env.filters["le"] = self._escape_latex
 
-    def render(self, data: CVData, output_path: Path) -> Path:
+    def render(self, data: Renderable, output_path: Path, template: str, output_doc_name: str) -> Path:
         """Render given data into text."""
-        env = Environment(
-            loader=None,
-            trim_blocks=True,
-            lstrip_blocks=True,
-            autoescape=False,  # noqa: S701 - Latex is used
-        )
-        env.filters["le"] = self._escape_latex
-        output = env.from_string(self._template).render(**data.model_dump())
-        tex_path = output_path / "cv.tex"
+        output = self._env.get_template(template).render(**data.model_dump())
+        tex_path = output_path / f"{output_doc_name}.tex"
         with open(tex_path, "w", encoding="utf-8") as f:
             f.write(output)
         self._render_pdf_from_latex(tex_path)
-        return output_path / "cv.pdf"
+        return output_path / f"{output_doc_name}.pdf"
 
     def _render_pdf_from_latex(self, tex_path: Path) -> None:
         """Given LaTex path - make a PDF from it."""

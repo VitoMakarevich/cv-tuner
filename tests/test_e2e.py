@@ -9,11 +9,14 @@ from tests.fake_executor import FakeExecutor
 
 expected_files = [
     "cv.pdf",
+    "cover_letter.pdf",
     "llm_experience.md",
     "llm_job_description.md",
     "raw_experience.md",
     "raw_job_description.md",
     "system_prompt.md",
+    "cover_letter.pdf",
+    "system_prompt_cover_letter.md",
 ]
 
 jinja_renderer = JinjaRenderer(prompt_template_path)
@@ -22,12 +25,14 @@ html_renderer = HTMLCVRenderer(html_template_path)
 
 def test_e2e() -> None:
     output_path = root_dir_path / "test_output" / datetime.now().isoformat()
-    prompts = load_prompts(experience_file="test_experience.json")
+    prompts = load_prompts()
 
     context = Context(
         job_description=prompts.job_description,
         experience=prompts.experience,
         system_prompt=prompts.system_prompt,
+        system_prompt_cover_letter=prompts.system_prompt_cover_letter,
+        task=prompts.task,
         output_path=output_path,
         renderer=jinja_renderer,
     )

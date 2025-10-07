@@ -11,6 +11,8 @@ class AgentInput(BaseModel):
     job_description: str
     experience: str
     system_prompt: str
+    system_prompt_cover_letter: str
+    task: str
 
 
 class AllInput(BaseModel):
@@ -34,6 +36,8 @@ class Context:
         job_description: str,
         experience: str,
         system_prompt: str,
+        system_prompt_cover_letter: str,
+        task: str,
         output_path: Path,
         renderer: JinjaRenderer,
     ) -> None:
@@ -53,6 +57,8 @@ class Context:
             job_description=llm_job_description,
             experience=llm_current_experience,
             system_prompt=system_prompt,
+            system_prompt_cover_letter=system_prompt_cover_letter,
+            task=task,
         )
         self._all_input = AllInput(
             raw_job_description=job_description,
@@ -86,6 +92,10 @@ class Context:
         self._save_file(
             self._all_input.agent_input.system_prompt,
             self._output_path / "system_prompt.md",
+        )
+        self._save_file(
+            self._all_input.agent_input.system_prompt_cover_letter,
+            self._output_path / "system_prompt_cover_letter.md",
         )
         if self._tool_call:
             self._save_file(self._tool_call, self._output_path / "tool_call.json")
